@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5c4s0xnrhobo"]
+
+[ext_resource type="Texture2D" uid="uid://bnq5tj1arhpv0" path="res://icon.svg" id="1_ms38n"]
+[ext_resource type="PackedScene" uid="uid://724td32cvitv" path="res://block.tscn" id="1_uap4d"]
+[ext_resource type="PackedScene" uid="uid://sui3y2lfeus0" path="res://scenes/player/base_player.tscn" id="2_7l3kq"]
+[ext_resource type="Texture2D" uid="uid://b3i17htpfw6gx" path="res://assets/light/images.jpg" id="4_jewwy"]
+[ext_resource type="PackedScene" uid="uid://dbyc3jj4ce3bx" path="res://scenes/objects/door.tscn" id="5_86nqt"]
+[ext_resource type="PackedScene" uid="uid://bw6ph0k1fovdr" path="res://scenes/objects/dulap.tscn" id="6_be0ye"]
+
+[sub_resource type="Gradient" id="Gradient_01vd1"]
+offsets = PackedFloat32Array(0.0447761, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_08vsd"]
+gradient = SubResource("Gradient_01vd1")
+
+[sub_resource type="Environment" id="Environment_7hbgr"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_white = 4.69
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture2D_08vsd")
+
+[node name="Main" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-475.0, -472.0, -512.0]
+metadata/_edit_vertical_guides_ = [1944.0, 1286.0]
+
+[node name="Sprite2D2" parent="." instance=ExtResource("1_uap4d")]
+position = Vector2(809, 218)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(382, 211)
+scale = Vector2(8.5094, 5.05194)
+texture = ExtResource("1_ms38n")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0470588, 0.0470588, 0.490196, 1)
+
+[node name="block" parent="." instance=ExtResource("1_uap4d")]
+position = Vector2(629, 285)
+
+[node name="Door" parent="." instance=ExtResource("5_86nqt")]
+position = Vector2(1055, 281)
+scale = Vector2(3.27738, 16.2973)
+openable = true
+
+[node name="basePlayer" parent="." instance=ExtResource("2_7l3kq")]
+top_level = true
+position = Vector2(878, 229)
+
+[node name="Node2D" type="Node2D" parent="basePlayer"]
+position = Vector2(-412, -209)
+scale = Vector2(0.988025, 0.991513)
+
+[node name="Shadow" type="PointLight2D" parent="basePlayer/Node2D"]
+position = Vector2(413, 203)
+scale = Vector2(1.40493, 1.5422)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 4.9
+texture = ExtResource("4_jewwy")
+texture_scale = 0.5
+
+[node name="TextureLight" type="PointLight2D" parent="basePlayer/Node2D"]
+position = Vector2(416, 207)
+scale = Vector2(1.57212, 1.754)
+energy = 0.68
+texture = ExtResource("4_jewwy")
+texture_scale = 0.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7hbgr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.34902, 0.34902, 0.34902, 1)
+position = Vector2(1906, -468)
+scale = Vector2(5.53396, 4.91395)
+texture = ExtResource("1_ms38n")
+
+[node name="dulap" parent="." instance=ExtResource("6_be0ye")]
+position = Vector2(892, 17)

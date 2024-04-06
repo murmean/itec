@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://66wku78u05mf"]
+
+[ext_resource type="Texture2D" uid="uid://chvad1fprdxs6" path="res://assets/Bar6.png" id="1_n7vvs"]
+[ext_resource type="Texture2D" uid="uid://bnq5tj1arhpv0" path="res://icon.svg" id="2_e6axv"]
+[ext_resource type="Script" path="res://scenes/gui/play_button.gd" id="2_w65p0"]
+[ext_resource type="Script" path="res://scenes/gui/settings_button.gd" id="3_eovxo"]
+[ext_resource type="Script" path="res://scenes/gui/exit_button.gd" id="4_yysub"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdhka"]
+font_size = 32
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e6axv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -88.0
+offset_right = 155.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_n7vvs")
+script = ExtResource("2_w65p0")
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureButton"]
+layout_mode = 0
+offset_right = 310.0
+offset_bottom = 56.0
+text = "PLAY"
+label_settings = SubResource("LabelSettings_fdhka")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_n7vvs")
+script = ExtResource("3_eovxo")
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureButton2"]
+layout_mode = 0
+offset_right = 310.0
+offset_bottom = 56.0
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_fdhka")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_n7vvs")
+script = ExtResource("4_yysub")
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureButton3"]
+layout_mode = 0
+offset_right = 310.0
+offset_bottom = 56.0
+text = "EXIT"
+label_settings = SubResource("LabelSettings_fdhka")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/TextureButton" to="VBoxContainer/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureButton2" to="VBoxContainer/TextureButton" method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureButton2" to="VBoxContainer/TextureButton2" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureButton3" to="VBoxContainer/TextureButton3" method="_on_pressed"]

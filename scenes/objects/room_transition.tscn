@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://duwfy4haqx5lg"]
+
+[ext_resource type="Script" path="res://scripts/objects/roomTransition.gd" id="1_0f08g"]
+[ext_resource type="Texture2D" uid="uid://bovvom8awo27x" path="res://assets/background/TileSet v1.0 (1).png" id="3_e7hvm"]
+[ext_resource type="PackedScene" uid="uid://c1gq0640x2fvh" path="res://scenes/interaction/interaction_area.tscn" id="4_wa2jj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bm7g2"]
+
+[node name="roomTransition" type="StaticBody2D"]
+script = ExtResource("1_0f08g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_e7hvm")
+region_enabled = true
+region_rect = Rect2(224.433, 160.605, 30.3961, 29.6767)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+scale = Vector2(1.52003, 1.51453)
+shape = SubResource("RectangleShape2D_bm7g2")
+disabled = true
+
+[node name="InteractionArea" parent="." instance=ExtResource("4_wa2jj")]
+collision_mask = 2
+action_name = "enter"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+scale = Vector2(1.52003, 1.51453)
+shape = SubResource("RectangleShape2D_bm7g2")

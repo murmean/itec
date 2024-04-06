@@ -1,0 +1,138 @@
+[gd_scene load_steps=20 format=3 uid="uid://blho0eq207mr"]
+
+[ext_resource type="Texture2D" uid="uid://ctjs0hjpqx3lk" path="res://assets/enemy/xeno.xenomorph.sprite.png" id="1_okp61"]
+[ext_resource type="Script" path="res://scripts/enemy/base_enemy.gd" id="1_vqicu"]
+[ext_resource type="Script" path="res://scripts/stateMachine/stateMachine.gd" id="3_3t3pv"]
+[ext_resource type="Script" path="res://scripts/enemy/xenomorph/followState.gd" id="3_apn63"]
+[ext_resource type="Script" path="res://scripts/enemy/xenomorph/Wander.gd" id="4_4dso3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h14i"]
+atlas = ExtResource("1_okp61")
+region = Rect2(0, 360, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7icx"]
+atlas = ExtResource("1_okp61")
+region = Rect2(32, 360, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i0ni"]
+atlas = ExtResource("1_okp61")
+region = Rect2(64, 360, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytqg2"]
+atlas = ExtResource("1_okp61")
+region = Rect2(32, 120, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ywsv"]
+atlas = ExtResource("1_okp61")
+region = Rect2(64, 120, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyc03"]
+atlas = ExtResource("1_okp61")
+region = Rect2(96, 120, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dlie"]
+atlas = ExtResource("1_okp61")
+region = Rect2(128, 120, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm525"]
+atlas = ExtResource("1_okp61")
+region = Rect2(160, 120, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptcxo"]
+atlas = ExtResource("1_okp61")
+region = Rect2(192, 120, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfxn3"]
+atlas = ExtResource("1_okp61")
+region = Rect2(224, 120, 32, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lkiyi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h14i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7icx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i0ni")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytqg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ywsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyc03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dlie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qm525")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptcxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfxn3")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_quj6a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1t32"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2sq1c"]
+polygon = PackedVector2Array(-9.42094, -14.2938, 6.82206, -13.969, 7.47178, 8.1215, -8.1215, 8.1215)
+
+[node name="base_enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemy")]
+scale = Vector2(3.07825, 3.07825)
+script = ExtResource("1_vqicu")
+enemy = NodePath(".")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_lkiyi")
+animation = &"run"
+frame_progress = 0.61219
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("RectangleShape2D_quj6a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_e1t32")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_3t3pv")
+initial_state = NodePath("Wander")
+
+[node name="Wander" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_4dso3")
+enemy = NodePath("../..")
+move_speed = 30
+
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_apn63")
+enemy = NodePath("../..")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+position = Vector2(1.29944, 0.97458)
+occluder = SubResource("OccluderPolygon2D_2sq1c")

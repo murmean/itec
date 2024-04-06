@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1ix5gidklfoo"]
+
+[ext_resource type="Texture2D" uid="uid://bnq5tj1arhpv0" path="res://icon.svg" id="1_v2lip"]
+[ext_resource type="Texture2D" uid="uid://chvad1fprdxs6" path="res://assets/Bar6.png" id="2_6r5dd"]
+[ext_resource type="PackedScene" uid="uid://dr0ihu51kwt7q" path="res://scenes/volume_slider.tscn" id="4_rumwk"]
+[ext_resource type="Script" path="res://scenes/gui/back_button.gd" id="5_0jye3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdhka"]
+font_size = 32
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_v2lip")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -155.0
+offset_right = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TextureButton5" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_6r5dd")
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureButton5"]
+layout_mode = 0
+offset_right = 310.0
+offset_bottom = 56.0
+text = "SFX VOLUME"
+label_settings = SubResource("LabelSettings_fdhka")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="volume_slider" parent="VBoxContainer" instance=ExtResource("4_rumwk")]
+layout_mode = 2
+bus_name = "Sidechain"
+
+[node name="TextureButton4" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_6r5dd")
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureButton4"]
+layout_mode = 0
+offset_right = 310.0
+offset_bottom = 56.0
+text = "MUSIC VOLUME"
+label_settings = SubResource("LabelSettings_fdhka")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="volume_slider2" parent="VBoxContainer" instance=ExtResource("4_rumwk")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_6r5dd")
+script = ExtResource("5_0jye3")
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureButton3"]
+layout_mode = 0
+offset_right = 310.0
+offset_bottom = 56.0
+text = "BACK"
+label_settings = SubResource("LabelSettings_fdhka")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/TextureButton3" to="VBoxContainer/TextureButton3" method="_on_pressed"]

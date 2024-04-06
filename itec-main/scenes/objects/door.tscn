@@ -1,0 +1,170 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbyc3jj4ce3bx"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_0a67q"]
+[ext_resource type="Texture2D" uid="uid://bnq5tj1arhpv0" path="res://icon.svg" id="2_syice"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4cvm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xe8vg"]
+
+[sub_resource type="Animation" id="Animation_vjkqb"]
+resource_name = "opened"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -36.815), Vector2(0, -81.3003)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 33.875), Vector2(0, 74.5252)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_058vo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -36.815)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 33.875)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tpb4p"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -81.3003), Vector2(0, -36.815)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 74.5252), Vector2(0, 33.875)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kgj5b"]
+_data = {
+"RESET": SubResource("Animation_058vo"),
+"close": SubResource("Animation_tpb4p"),
+"opened": SubResource("Animation_vjkqb")
+}
+
+[node name="Door" type="CharacterBody2D"]
+scale = Vector2(0.39205, 0.794935)
+script = ExtResource("1_0a67q")
+
+[node name="Door" type="Area2D" parent="."]
+scale = Vector2(0.0742682, 0.147601)
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Door"]
+self_modulate = Color(1, 0.203922, 0.117647, 1)
+position = Vector2(0, -36.815)
+scale = Vector2(0.936812, 0.571654)
+texture = ExtResource("2_syice")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Door"]
+self_modulate = Color(1, 0.203922, 0.117647, 1)
+position = Vector2(0, 33.875)
+scale = Vector2(0.488774, 0.559959)
+texture = ExtResource("2_syice")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+scale = Vector2(42.1119, 2.49917)
+shape = SubResource("RectangleShape2D_m4cvm")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+scale = Vector2(0.441934, 0.925601)
+shape = SubResource("RectangleShape2D_xe8vg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_kgj5b")
+}
+
+[connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
+[connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]

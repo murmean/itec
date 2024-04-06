@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw6ph0k1fovdr"]
+
+[ext_resource type="Script" path="res://scripts/objects/dulap.gd" id="1_dpvvy"]
+[ext_resource type="Texture2D" uid="uid://csgok1bai3xy8" path="res://assets/objects/dulap.png" id="1_gur5y"]
+[ext_resource type="PackedScene" uid="uid://c1gq0640x2fvh" path="res://scenes/interaction/interaction_area.tscn" id="3_a18n6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2c17"]
+
+[node name="Area2D" type="StaticBody2D"]
+script = ExtResource("1_dpvvy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gur5y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5.71801, 8.67495)
+shape = SubResource("RectangleShape2D_j2c17")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_a18n6")]
+scale = Vector2(1.76855, 1.24001)
+collision_mask = 2
+action_name = "toggle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+scale = Vector2(6.02272, 9.4748)
+shape = SubResource("RectangleShape2D_j2c17")

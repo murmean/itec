@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://blho0eq207mr"]
+[gd_scene load_steps=21 format=3 uid="uid://blho0eq207mr"]
 
 [ext_resource type="Texture2D" uid="uid://ctjs0hjpqx3lk" path="res://assets/enemy/xeno.xenomorph.sprite.png" id="1_okp61"]
 [ext_resource type="Script" path="res://scripts/enemy/base_enemy.gd" id="1_vqicu"]
 [ext_resource type="Script" path="res://scripts/stateMachine/stateMachine.gd" id="3_3t3pv"]
 [ext_resource type="Script" path="res://scripts/enemy/xenomorph/followState.gd" id="3_apn63"]
 [ext_resource type="Script" path="res://scripts/enemy/xenomorph/Wander.gd" id="4_4dso3"]
+[ext_resource type="PackedScene" uid="uid://drs4822yuimsr" path="res://scenes/enemy/pathfinding.tscn" id="6_vf1l4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2h14i"]
 atlas = ExtResource("1_okp61")
@@ -96,16 +97,16 @@ animations = [{
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2sq1c"]
 polygon = PackedVector2Array(-9.42094, -14.2938, 6.82206, -13.969, 7.47178, 8.1215, -8.1215, 8.1215)
 
-[node name="base_enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemy")]
+[node name="base_enemy" type="CharacterBody2D" node_paths=PackedStringArray("path", "enemy")]
 scale = Vector2(3.07825, 3.07825)
 script = ExtResource("1_vqicu")
+path = NodePath("pathfinding")
 enemy = NodePath(".")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_lkiyi")
-animation = &"run"
-frame_progress = 0.61219
+animation = &"death"
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -136,3 +137,7 @@ enemy = NodePath("../..")
 visible = false
 position = Vector2(1.29944, 0.97458)
 occluder = SubResource("OccluderPolygon2D_2sq1c")
+
+[node name="pathfinding" parent="." instance=ExtResource("6_vf1l4")]
+
+[editable path="pathfinding"]

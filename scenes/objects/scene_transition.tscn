@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dd1l0c3i45mwg"]
+[gd_scene load_steps=6 format=3 uid="uid://dd1l0c3i45mwg"]
 
 [ext_resource type="Script" path="res://scripts/objects/SceneTransition.gd" id="1_qpn4t"]
 [ext_resource type="Texture2D" uid="uid://bovvom8awo27x" path="res://assets/background/TileSet v1.0 (1).png" id="2_1wlt5"]
 [ext_resource type="PackedScene" uid="uid://c1gq0640x2fvh" path="res://scenes/interaction/interaction_area.tscn" id="3_onpq8"]
+[ext_resource type="AudioStream" uid="uid://47riw5guw1sc" path="res://assets/audio/next_level.ogg" id="4_8031q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bm7g2"]
 
@@ -27,3 +28,7 @@ action_name = "enter"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 scale = Vector2(1.52003, 1.51453)
 shape = SubResource("RectangleShape2D_bm7g2")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8031q")
+bus = &"UI"

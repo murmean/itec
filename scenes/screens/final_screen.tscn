@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccnhn5ktoovoq"]
+
+[ext_resource type="Script" path="res://scripts/screens/final_screen.gd" id="1_2fnnt"]
+[ext_resource type="PackedScene" uid="uid://66wku78u05mf" path="res://scenes/gui/main_menu.tscn" id="2_vgolj"]
+
+[sub_resource type="SystemFont" id="SystemFont_mot5o"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_2fnnt")
+packedScene = ExtResource("2_vgolj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.054
+offset_top = -130.244
+offset_right = -25.0537
+offset_bottom = -37.2444
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.44717, 2.94889)
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_mot5o")
+theme_override_font_sizes/font_size = 26
+text = "GOOD JOB!"
+
+[node name="MainMenu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Main menu"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

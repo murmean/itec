@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbyc3jj4ce3bx"]
+[gd_scene load_steps=7 format=3 uid="uid://dbyc3jj4ce3bx"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_0a67q"]
 [ext_resource type="Texture2D" uid="uid://bovvom8awo27x" path="res://assets/background/TileSet v1.0 (1).png" id="2_b2181"]
+[ext_resource type="AudioStream" uid="uid://dsrkiu0dbsadb" path="res://assets/audio/door_open.ogg" id="3_yn5cw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m4cvm"]
 
@@ -55,6 +56,10 @@ occluder = SubResource("OccluderPolygon2D_g157p")
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
 position = Vector2(0.10043, -10.104)
 occluder = SubResource("OccluderPolygon2D_g157p")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yn5cw")
+bus = &"CreativeFX"
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]

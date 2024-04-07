@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="itec"
-run/main_scene="res://scenes/maps/map_lvl1.tscn"
+run/main_scene="res://scenes/maps/map_lvl2.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ driver/enable_input=true
 InteractionManager="*res://scenes/interaction/InteractionManager.tscn"
 Events="*res://scripts/events.gd"
 Signals="*res://scripts/signals/signals.gd"
+sgTon="*res://scripts/signals/Singletons.gd"
 
 [editor_plugins]
 

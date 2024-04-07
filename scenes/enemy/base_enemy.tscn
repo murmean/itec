@@ -1,4 +1,4 @@
-[gd_scene load_steps=173 format=3 uid="uid://blho0eq207mr"]
+[gd_scene load_steps=182 format=3 uid="uid://blho0eq207mr"]
 
 [ext_resource type="Script" path="res://scripts/enemy/base_enemy.gd" id="1_vqicu"]
 [ext_resource type="Script" path="res://scripts/stateMachine/stateMachine.gd" id="3_3t3pv"]
@@ -161,6 +161,13 @@
 [ext_resource type="Texture2D" uid="uid://8gvn6t38mgnj" path="res://assets/enemyClose/thrust/armature_thrust_58.png" id="159_bicxs"]
 [ext_resource type="Texture2D" uid="uid://cqxvqnem4j0ow" path="res://assets/enemyClose/thrust/armature_thrust_59.png" id="160_lrwkp"]
 [ext_resource type="Texture2D" uid="uid://bo361xa24tnsj" path="res://assets/enemyClose/thrust/armature_thrust_60.png" id="161_hgyw5"]
+[ext_resource type="AudioStream" uid="uid://c3ustmge5w2xp" path="res://assets/audio/enemy_alerted_1 (1).ogg" id="162_fqsmm"]
+[ext_resource type="AudioStream" uid="uid://dvm0hdlnc0hqi" path="res://assets/audio/enemy_alerted_2 (1).ogg" id="163_rhuut"]
+[ext_resource type="AudioStream" uid="uid://c4ktxwn0igvwu" path="res://assets/audio/enemy_alerted_3.ogg" id="164_2p8tq"]
+[ext_resource type="AudioStream" uid="uid://nmrof3m0qaxk" path="res://assets/audio/enemy_alerted_4.ogg" id="165_4n5hy"]
+[ext_resource type="AudioStream" uid="uid://cil1n1wskdlft" path="res://assets/audio/enemy_attack_1.ogg" id="166_31ksh"]
+[ext_resource type="AudioStream" uid="uid://bsn4gfju7hkhq" path="res://assets/audio/enemy_attack_2.ogg" id="167_8qlma"]
+[ext_resource type="AudioStream" uid="uid://dumkjb7qpfblf" path="res://assets/audio/enemy_attack_3.ogg" id="168_yruc7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1t32"]
 
@@ -789,6 +796,20 @@ tracks/2/keys = {
 "method": &"_activate_strikebox"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_stab"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nrhle"]
 _data = {
@@ -798,6 +819,26 @@ _data = {
 "slash": SubResource("Animation_do073"),
 "thrust": SubResource("Animation_3qbwr")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_p7bmo"]
+streams_count = 4
+stream_0/stream = ExtResource("162_fqsmm")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("163_rhuut")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("164_2p8tq")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("165_4n5hy")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wg2q0"]
+streams_count = 3
+stream_0/stream = ExtResource("166_31ksh")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("167_8qlma")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("168_yruc7")
+stream_2/weight = 1.0
 
 [node name="base_enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemy", "path")]
 collision_layer = 4
@@ -818,7 +859,6 @@ unique_name_in_owner = true
 position = Vector2(-0.64972, 0.32486)
 sprite_frames = SubResource("SpriteFrames_lkiyi")
 animation = &"thrust"
-frame = 30
 offset = Vector2(0.64972, -0.32486)
 
 [node name="StrikeArea" type="Area2D" parent="Project"]
@@ -846,7 +886,7 @@ scale = Vector2(-13.4361, 10.4569)
 shape = SubResource("CircleShape2D_f66h8")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-scale = Vector2(1.15308, 1.29311)
+scale = Vector2(1.50951, 1.62053)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -884,6 +924,15 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_nrhle")
 }
+
+[node name="Alert" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_p7bmo")
+bus = &"Enemy"
+
+[node name="EnemyAttack" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_wg2q0")
 
 [connection signal="body_entered" from="Project/StrikeArea" to="." method="_on_strike_area_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

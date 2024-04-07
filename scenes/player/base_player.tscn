@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://sui3y2lfeus0"]
+[gd_scene load_steps=82 format=3 uid="uid://sui3y2lfeus0"]
 
 [ext_resource type="Script" path="res://scripts/base_player.gd" id="1_48q1c"]
 [ext_resource type="Texture2D" uid="uid://b2cialydqh0bx" path="res://assets/enemyRanged/hit/Armature_hit_00.png" id="2_guuwi"]
@@ -68,6 +68,12 @@
 [ext_resource type="Texture2D" uid="uid://12rippjsr7qs" path="res://assets/enemyRanged/run/Armature_newAnimation_49.png" id="52_53xh3"]
 [ext_resource type="Texture2D" uid="uid://b7um1mxg1f0bj" path="res://assets/enemyRanged/run/Armature_newAnimation_50.png" id="53_wuur3"]
 [ext_resource type="Texture2D" uid="uid://p0ckl3dx2saw" path="res://assets/items/keys_preview.png" id="68_ibrel"]
+[ext_resource type="Texture2D" uid="uid://b3i17htpfw6gx" path="res://assets/light/images.jpg" id="69_x5846"]
+[ext_resource type="AudioStream" uid="uid://bufk7jvqm5r65" path="res://assets/audio/step_1.ogg" id="70_dj7lf"]
+[ext_resource type="AudioStream" uid="uid://vcbmubqhbxic" path="res://assets/audio/death_1.ogg" id="70_g850t"]
+[ext_resource type="AudioStream" uid="uid://dwpe7cm4xv755" path="res://assets/audio/step_2.ogg" id="71_v8pff"]
+[ext_resource type="AudioStream" uid="uid://cuay1wf6gykps" path="res://assets/audio/step_3.ogg" id="72_hcvjt"]
+[ext_resource type="AudioStream" uid="uid://cx6knddkgaatr" path="res://assets/audio/step_4.ogg" id="73_32vbi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tl0is"]
 animations = [{
@@ -276,21 +282,6 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yn7pn"]
 
-[sub_resource type="Animation" id="Animation_aiayg"]
-resource_name = "fade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_66lt8"]
 length = 0.001
 tracks/0/type = "value"
@@ -321,12 +312,39 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_aiayg"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j236r"]
 _data = {
 "RESET": SubResource("Animation_66lt8"),
 "de_fade": SubResource("Animation_i2w06"),
 "fade": SubResource("Animation_aiayg")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x2fpx"]
+random_pitch = 1.18
+streams_count = 4
+stream_0/stream = ExtResource("70_dj7lf")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("71_v8pff")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("72_hcvjt")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("73_32vbi")
+stream_3/weight = 1.0
 
 [node name="basePlayer" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
@@ -386,9 +404,12 @@ libraries = {
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
+offset_left = -236.0
+offset_top = 40.0
+offset_right = -163.0
+offset_bottom = 63.0
 grow_horizontal = 0
+scale = Vector2(1.76113, 1.7136)
 size_flags_horizontal = 4
 text = "Cards 0/0"
 
@@ -398,3 +419,28 @@ scale = Vector2(4.32035, 3.77818)
 texture = ExtResource("68_ibrel")
 region_enabled = true
 region_rect = Rect2(37.1362, 27.9855, 15.2697, 10.1078)
+
+[node name="flashlight" type="Node2D" parent="."]
+
+[node name="flashlight" type="PointLight2D" parent="flashlight"]
+unique_name_in_owner = true
+position = Vector2(390, 10)
+rotation = -1.57513
+scale = Vector2(2.94112, 4.71405)
+color = Color(0, 1, 0, 1)
+energy = 1.88
+texture = ExtResource("69_x5846")
+
+[node name="deathSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("70_g850t")
+bus = &"UI"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_x2fpx")
+volume_db = -9.189
+bus = &"Sidechain"
+
+[node name="loopTimer" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="timeout" from="loopTimer" to="." method="_on_loop_timer_timeout"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://b5c4s0xnrhobo"]
 
 [ext_resource type="PackedScene" uid="uid://sui3y2lfeus0" path="res://scenes/player/base_player.tscn" id="2_7l3kq"]
-[ext_resource type="Texture2D" uid="uid://1ig7xqt8km1f" path="res://assets/background/Space Background.png" id="3_7uxt6"]
+[ext_resource type="Texture2D" uid="uid://dr1dafsc57sut" path="res://assets/background/Space Background.png" id="3_7uxt6"]
 [ext_resource type="Texture2D" uid="uid://b3i17htpfw6gx" path="res://assets/light/images.jpg" id="4_jewwy"]
 [ext_resource type="Texture2D" uid="uid://bovvom8awo27x" path="res://assets/background/TileSet v1.0 (1).png" id="4_t53b1"]
 [ext_resource type="Texture2D" uid="uid://bl4valcoa4icp" path="res://assets/background/floor.png" id="5_d1wuk"]
@@ -454,7 +454,6 @@ metadata/_edit_vertical_guides_ = [3009.0, 3892.0]
 
 [node name="base_enemy" parent="." instance=ExtResource("6_pddlq")]
 position = Vector2(1720, -49)
-scale = Vector2(1, 1)
 
 [node name="Sprite2D" parent="." instance=ExtResource("6_77i2b")]
 position = Vector2(979, 273)

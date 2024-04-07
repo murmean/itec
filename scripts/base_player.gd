@@ -6,13 +6,18 @@ const MOVE_SPEED = 400
 var movement_speed = MOVE_SPEED
 @export var invisible: bool = false
 @export var cards : int
-
+@export var Spawn_point : Marker2D
 @onready var interaction_area: InteractionArea =  $InteractionArea
 @onready var flashlight =%flashlight
 @onready var transition_player = $CanvasLayer/TransitionPlayer
 @onready var color_rect = $CanvasLayer/ColorRect
 @onready var label_2 = $CanvasLayer/Label2
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
+@onready var loop_timer = $loopTimer
+@onready var death_sfx = $deathSFX
 
+#physics
+var mov: Vector2
 
 #cards
 
@@ -29,11 +34,12 @@ var inventory = []
 
 
 func _ready():
+	label_2.text = "Cards 0/" + str(sgTon.cards_needed)
 	transition_player.play("de_fade")
 	Signals.level_finished.connect(_change_scene)
-	$AnimatedSprite2D.rotation_degrees += 260
+	$AnimatedSprite2D.rotation_degrees += 260 	
 	Signals.card_found.connect(collected_cards)
-	Signals.cards_required.connect(_required_cards)
+	loop_timer.start()
 
 
 func _physics_process(delta):
@@ -44,7 +50,7 @@ func _physics_process(delta):
 	 	
 	var x_dir = Input.get_action_strength("right") -	Input.get_action_strength("left")
 	var y_dir = Input.get_action_strength("down") -	Input.get_action_strength("up")
-	var mov = Vector2(x_dir,y_dir)
+	mov = Vector2(x_dir,y_dir)
 	if mov:
 		$AnimatedSprite2D.play("run")
 
@@ -80,15 +86,31 @@ func player_show():
 	movement_speed = MOVE_SPEED
 
 func die():
-	queue_free()
+	hide()
+	Events.music_disable_chase.emit()
+	death_sfx.play()
+	set_physics_process(false)
+	transition_player.play("fade")
+	transition_player.queue("de_fade")
+	await get_tree().create_timer(1).timeout
+	show()
+	set_physics_process(true)
+	global_position = Spawn_point.global_position
 	
-func _required_cards(cards):
-	needed_cards = cards
+
 	
 func collected_cards():
 	current_cards +=1
-	label_2.text = "Cards: " + str(current_cards) +" / "+ str(needed_cards)
+	if current_cards == sgTon.cards_needed:
+		sgTon.b_has_cards = true
+		Events.music_enable_imminent.emit()
+	label_2.text = "Cards: " + str(current_cards) +" / "+ str(sgTon.cards_needed)
 
 func _change_scene():
 	color_rect.show()
 	transition_player.play("fade")
+
+
+func _on_loop_timer_timeout():
+	if mov:
+		audio_stream_player_2d.play()

@@ -1,4 +1,5 @@
 extends TextureButton
 
 func _on_pressed():
-	print("play")
+	get_tree().change_scene_to_file("res://scenes/maps/map_lvl1.tscn")
+	

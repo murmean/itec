@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bt3c0ic8156vp"]
+[gd_scene load_steps=5 format=3 uid="uid://bt3c0ic8156vp"]
 
 [ext_resource type="Texture2D" uid="uid://p0ckl3dx2saw" path="res://assets/items/keys_preview.png" id="1_gctjv"]
 [ext_resource type="Script" path="res://assets/items/card.gd" id="1_v07p0"]
+[ext_resource type="Texture2D" uid="uid://b3i17htpfw6gx" path="res://assets/light/images.jpg" id="3_ndb4x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdd6v"]
 
 [node name="Card" type="Area2D"]
-scale = Vector2(7.65912, 7.65912)
+scale = Vector2(5.37958, 5.37958)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_v07p0")
@@ -21,5 +22,11 @@ region_rect = Rect2(37.1362, 27.9855, 15.2697, 10.1078)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.760306, 0.416057)
 shape = SubResource("RectangleShape2D_gdd6v")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.768627, 0, 0.0117647, 1)
+energy = 1.55
+texture = ExtResource("3_ndb4x")
+texture_scale = 0.43
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

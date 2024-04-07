@@ -129,4 +129,4 @@ bus/6/send = &"Master"
 bus/6/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_fj7d6")
 bus/6/effect/0/enabled = true
 bus/6/effect/1/effect = SubResource("AudioEffectAmplify_3jjl8")
-bus/6/effect/1/enabled = true
+bus/6/effect/1/enabled = false

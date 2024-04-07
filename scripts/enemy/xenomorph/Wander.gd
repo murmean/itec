@@ -9,6 +9,9 @@ var wander_time : float
 var player : CharacterBody2D
 
 func enter():
+	
+	if sgTon.b_has_cards:
+		Events.music_enable_imminent.emit()
 	if get_tree() != null:
 		player = get_tree().get_first_node_in_group("Player")
 	randomize_wander()

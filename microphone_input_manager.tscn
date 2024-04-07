@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://010wh4tghgte"]
+[gd_scene load_steps=3 format=3 uid="uid://yrppq2ggo0ji"]
 
 [ext_resource type="Script" path="res://microphone_input_manager.gd" id="1_d8e5k"]
 

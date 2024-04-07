@@ -1,6 +1,6 @@
-extends Area2D
+extends CanvasLayer
 
-
+@export var packedScene: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -11,7 +11,9 @@ func _process(delta):
 	pass
 
 
-func _on_body_entered(body):
-	Signals.card_found.emit()
-	Events.keycard_collected.emit()
-	queue_free()
+func _on_main_menu_pressed():
+	get_tree().change_scene_to_packed(packedScene)
+
+
+func _on_exit_pressed():
+	get_tree().quit()

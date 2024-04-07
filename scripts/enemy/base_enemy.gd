@@ -8,7 +8,9 @@ const JUMP_VELOCITY = -400.0
 @onready var animPlayer = %AnimationPlayer
 @onready var collision_shape_2d = $Project/StrikeArea/CollisionShape2D
 @onready var player = get_tree().get_first_node_in_group("Player")
+@onready var enemy_attack = %EnemyAttack
 var player_detected = null
+
 
 
 
@@ -44,3 +46,6 @@ func _activate_strikebox():
 	collision_shape_2d.set_deferred("disabled",false)
 	await get_tree().create_timer(0.3).timeout
 	collision_shape_2d.set_deferred("disabled",true)
+
+func play_stab():
+	enemy_attack.play()

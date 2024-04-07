@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3beutk1uvxwq"]
+
+[sub_resource type="GDScript" id="GDScript_a41sj"]
+script/source = "extends Control
+
+const SHOP_MENU_ITEM = preload(\"res://tscn/shop_menu_item.tscn\")
+
+@onready var v_box_container = $VBoxContainer
+
+@export
+var item_list = []
+
+func _ready():
+	for item in item_list:
+		match typeof(item):
+			Item:
+				var new_menu_item = SHOP_MENU_ITEM.instantiate()
+				new_menu_item.set_item_sold(item)
+				v_box_container.add_child(new_menu_item)
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1297.0
+offset_bottom = 707.0
+script = SubResource("GDScript_a41sj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 470.0
+offset_bottom = 669.0
+grow_horizontal = 2
+grow_vertical = 2

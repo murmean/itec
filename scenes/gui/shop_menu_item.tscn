@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bje5y636bamk2"]
+
+[ext_resource type="Texture2D" uid="uid://bnq5tj1arhpv0" path="res://icon.svg" id="1_6wsuy"]
+[ext_resource type="Texture2D" uid="uid://chvad1fprdxs6" path="res://assets/Bar6.png" id="1_nkh5n"]
+
+[sub_resource type="GDScript" id="GDScript_36kuw"]
+script/source = "extends TextureButton
+
+var item_sold
+
+func set_item_sold(item_sold: Item):
+	self.item_sold = item_sold
+	var item_sprite = get_children()[0]
+	match typeof(item_sprite):
+		Sprite2D:
+			item_sprite.texture = item_sold.get_sprite()
+"
+
+[node name="TextureButton" type="TextureButton"]
+offset_right = 566.0
+offset_bottom = 119.0
+texture_normal = ExtResource("1_nkh5n")
+stretch_mode = 0
+script = SubResource("GDScript_36kuw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(57, 59)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6wsuy")

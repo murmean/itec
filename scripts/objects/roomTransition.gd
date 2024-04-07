@@ -2,7 +2,7 @@ extends StaticBody2D
 
 @onready var interaction_area = $InteractionArea
 @export var loc: Vector2
-var player: Player
+var player: CharacterBody2D
 var inside : bool = false
 func _ready():
 	interaction_area.interact = Callable(self, "go_to_room")

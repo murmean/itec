@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://dd1l0c3i45mwg"]
 
-[ext_resource type="Script" path="res://scripts/objects/roomTransition.gd" id="1_vhm76"]
+[ext_resource type="Script" path="res://scripts/objects/SceneTransition.gd" id="1_qpn4t"]
 [ext_resource type="Texture2D" uid="uid://bovvom8awo27x" path="res://assets/background/TileSet v1.0 (1).png" id="2_1wlt5"]
 [ext_resource type="PackedScene" uid="uid://c1gq0640x2fvh" path="res://scenes/interaction/interaction_area.tscn" id="3_onpq8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bm7g2"]
 
 [node name="SceneTransition" type="StaticBody2D"]
-script = ExtResource("1_vhm76")
+scale = Vector2(0.501737, 0.501737)
+script = ExtResource("1_qpn4t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_1wlt5")

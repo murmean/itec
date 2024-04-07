@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://sui3y2lfeus0"]
+[gd_scene load_steps=75 format=3 uid="uid://sui3y2lfeus0"]
 
 [ext_resource type="Script" path="res://scripts/base_player.gd" id="1_48q1c"]
 [ext_resource type="Texture2D" uid="uid://b2cialydqh0bx" path="res://assets/enemyRanged/hit/Armature_hit_00.png" id="2_guuwi"]
@@ -67,7 +67,7 @@
 [ext_resource type="Texture2D" uid="uid://criw258fnxew4" path="res://assets/enemyRanged/run/Armature_newAnimation_48.png" id="51_4eo4f"]
 [ext_resource type="Texture2D" uid="uid://12rippjsr7qs" path="res://assets/enemyRanged/run/Armature_newAnimation_49.png" id="52_53xh3"]
 [ext_resource type="Texture2D" uid="uid://b7um1mxg1f0bj" path="res://assets/enemyRanged/run/Armature_newAnimation_50.png" id="53_wuur3"]
-[ext_resource type="Texture2D" uid="uid://b3i17htpfw6gx" path="res://assets/light/images.jpg" id="68_xoj3u"]
+[ext_resource type="Texture2D" uid="uid://p0ckl3dx2saw" path="res://assets/items/keys_preview.png" id="68_ibrel"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tl0is"]
 animations = [{
@@ -276,6 +276,58 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yn7pn"]
 
+[sub_resource type="Animation" id="Animation_aiayg"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_66lt8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i2w06"]
+resource_name = "de_fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j236r"]
+_data = {
+"RESET": SubResource("Animation_66lt8"),
+"de_fade": SubResource("Animation_i2w06"),
+"fade": SubResource("Animation_aiayg")
+}
+
 [node name="basePlayer" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_48q1c")
@@ -305,21 +357,44 @@ shape = SubResource("CircleShape2D_yn7pn")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Stardust" type="Sprite2D" parent="CanvasLayer"]
+visible = false
 position = Vector2(1121, 82)
 texture = ExtResource("4_iclrc")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 1072.0
 offset_top = 101.0
 offset_right = 1135.0
 offset_bottom = 124.0
 text = "da za : 0"
 
-[node name="flashlight" type="PointLight2D" parent="."]
-position = Vector2(317, 1)
-rotation = -1.57513
-scale = Vector2(1.32906, 2.49394)
-color = Color(0, 1, 0, 1)
-energy = 3.9
-texture = ExtResource("68_xoj3u")
-texture_scale = 0.9
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TransitionPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_j236r")
+}
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+text = "Cards 0/0"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Label2"]
+position = Vector2(37, 45)
+scale = Vector2(4.32035, 3.77818)
+texture = ExtResource("68_ibrel")
+region_enabled = true
+region_rect = Rect2(37.1362, 27.9855, 15.2697, 10.1078)

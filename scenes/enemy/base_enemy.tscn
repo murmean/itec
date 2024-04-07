@@ -876,6 +876,9 @@ occluder = SubResource("OccluderPolygon2D_2sq1c")
 
 [node name="pathfinding" parent="." instance=ExtResource("6_vf1l4")]
 
+[node name="NavigationAgent2D" parent="pathfinding" index="1"]
+debug_enabled = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {

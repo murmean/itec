@@ -5,9 +5,20 @@ const JUMP_VELOCITY = -400.0
 const MOVE_SPEED = 400
 var movement_speed = MOVE_SPEED
 @export var invisible: bool = false
+@export var cards : int
 
 @onready var interaction_area: InteractionArea =  $InteractionArea
-@onready var flashlight = $flashlight
+@onready var flashlight =%flashlight
+@onready var transition_player = $CanvasLayer/TransitionPlayer
+@onready var color_rect = $CanvasLayer/ColorRect
+@onready var label_2 = $CanvasLayer/Label2
+
+
+#cards
+
+var current_cards = 0
+var needed_cards
+
 
 var b_is_hidden: bool = false
 #money
@@ -18,8 +29,11 @@ var inventory = []
 
 
 func _ready():
+	transition_player.play("de_fade")
+	Signals.level_finished.connect(_change_scene)
 	$AnimatedSprite2D.rotation_degrees += 260
-
+	Signals.card_found.connect(collected_cards)
+	Signals.cards_required.connect(_required_cards)
 
 
 func _physics_process(delta):
@@ -67,3 +81,14 @@ func player_show():
 
 func die():
 	queue_free()
+	
+func _required_cards(cards):
+	needed_cards = cards
+	
+func collected_cards():
+	current_cards +=1
+	label_2.text = "Cards: " + str(current_cards) +" / "+ str(needed_cards)
+
+func _change_scene():
+	color_rect.show()
+	transition_player.play("fade")

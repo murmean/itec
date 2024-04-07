@@ -12,7 +12,8 @@ func _ready():
 	Signals.found_player.connect(start_timer)
 
 func update_target():
-	navigation_agent_2d.target_position = target.position
+	if target !=null:
+		navigation_agent_2d.target_position = target.position
 	
 func _on_reaction_time_timeout():
 	update_target()

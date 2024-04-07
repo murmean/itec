@@ -1,107 +1,306 @@
-[gd_scene load_steps=16 format=3 uid="uid://sui3y2lfeus0"]
+[gd_scene load_steps=71 format=3 uid="uid://sui3y2lfeus0"]
 
 [ext_resource type="Script" path="res://scripts/base_player.gd" id="1_48q1c"]
-[ext_resource type="Texture2D" uid="uid://dmxaun8whqhau" path="res://assets/background/dfsectu-ba8ebeed-175b-4c0c-9f73-fab94ffff727.png" id="2_k1gfn"]
+[ext_resource type="Texture2D" uid="uid://b2cialydqh0bx" path="res://assets/enemyRanged/hit/Armature_hit_00.png" id="2_guuwi"]
 [ext_resource type="PackedScene" uid="uid://c1gq0640x2fvh" path="res://scenes/interaction/interaction_area.tscn" id="3_3assa"]
+[ext_resource type="Texture2D" uid="uid://cw8m6k7n3epoa" path="res://assets/enemyRanged/run/Armature_newAnimation_00.png" id="3_70r2e"]
+[ext_resource type="Texture2D" uid="uid://08ofuvmifunw" path="res://assets/enemyRanged/hit/Armature_hit_01.png" id="3_xuorg"]
+[ext_resource type="Texture2D" uid="uid://da4rxsq354k6n" path="res://assets/enemyRanged/run/Armature_newAnimation_01.png" id="4_gkoe5"]
+[ext_resource type="Texture2D" uid="uid://b8hicai8wi3r2" path="res://assets/enemyRanged/hit/Armature_hit_02.png" id="4_h0sku"]
 [ext_resource type="Texture2D" uid="uid://co8mfty4u3w5p" path="res://assets/stardust.png" id="4_iclrc"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_syag7"]
-atlas = ExtResource("2_k1gfn")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8d5y"]
-atlas = ExtResource("2_k1gfn")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j23ji"]
-atlas = ExtResource("2_k1gfn")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aoc4u"]
-atlas = ExtResource("2_k1gfn")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a5moe"]
-atlas = ExtResource("2_k1gfn")
-region = Rect2(0, 128, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kfx34"]
-atlas = ExtResource("2_k1gfn")
-region = Rect2(64, 128, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1wyo"]
-atlas = ExtResource("2_k1gfn")
-region = Rect2(128, 128, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eif7i"]
-atlas = ExtResource("2_k1gfn")
-region = Rect2(192, 128, 64, 64)
+[ext_resource type="Texture2D" uid="uid://cae87hc3pu7tc" path="res://assets/enemyRanged/hit/Armature_hit_03.png" id="5_uemke"]
+[ext_resource type="Texture2D" uid="uid://bxb7g23d3tg5q" path="res://assets/enemyRanged/run/Armature_newAnimation_02.png" id="5_yk48k"]
+[ext_resource type="Texture2D" uid="uid://c5pa7b75p427v" path="res://assets/enemyRanged/run/Armature_newAnimation_03.png" id="6_3oaog"]
+[ext_resource type="Texture2D" uid="uid://bc1eheajfms74" path="res://assets/enemyRanged/hit/Armature_hit_04.png" id="6_cstbc"]
+[ext_resource type="Texture2D" uid="uid://b2m4q3tj83jlr" path="res://assets/enemyRanged/run/Armature_newAnimation_04.png" id="7_1w6lo"]
+[ext_resource type="Texture2D" uid="uid://be8namo0e4r8a" path="res://assets/enemyRanged/hit/Armature_hit_05.png" id="7_cjldr"]
+[ext_resource type="Texture2D" uid="uid://dg2gn52cflcs5" path="res://assets/enemyRanged/hit/Armature_hit_06.png" id="8_clb7d"]
+[ext_resource type="Texture2D" uid="uid://bpngjus4xyhoq" path="res://assets/enemyRanged/run/Armature_newAnimation_05.png" id="8_r1i6p"]
+[ext_resource type="Texture2D" uid="uid://dtchkmwan8pvt" path="res://assets/enemyRanged/run/Armature_newAnimation_06.png" id="9_l8euk"]
+[ext_resource type="Texture2D" uid="uid://coa5g2fi47ayl" path="res://assets/enemyRanged/hit/Armature_hit_07.png" id="9_u72ol"]
+[ext_resource type="Texture2D" uid="uid://cbijvlt2bcijq" path="res://assets/enemyRanged/run/Armature_newAnimation_07.png" id="10_583ut"]
+[ext_resource type="Texture2D" uid="uid://jdi02qh6g2wb" path="res://assets/enemyRanged/hit/Armature_hit_08.png" id="10_q7d0o"]
+[ext_resource type="Texture2D" uid="uid://lkw2qaqlh7hg" path="res://assets/enemyRanged/hit/Armature_hit_09.png" id="11_k5kns"]
+[ext_resource type="Texture2D" uid="uid://ccljul40r4sjx" path="res://assets/enemyRanged/run/Armature_newAnimation_08.png" id="11_v7jmq"]
+[ext_resource type="Texture2D" uid="uid://ddden01q6be87" path="res://assets/enemyRanged/hit/Armature_hit_10.png" id="12_jekg1"]
+[ext_resource type="Texture2D" uid="uid://b4t3oljconak2" path="res://assets/enemyRanged/run/Armature_newAnimation_09.png" id="12_kw57l"]
+[ext_resource type="Texture2D" uid="uid://bmsurjowv0vdr" path="res://assets/enemyRanged/run/Armature_newAnimation_10.png" id="13_3jk8x"]
+[ext_resource type="Texture2D" uid="uid://u0kw4qdktl4d" path="res://assets/enemyRanged/hit/Armature_hit_11.png" id="13_woi7o"]
+[ext_resource type="Texture2D" uid="uid://bri0ploegpylt" path="res://assets/enemyRanged/run/Armature_newAnimation_11.png" id="14_hg52h"]
+[ext_resource type="Texture2D" uid="uid://crgja7n88o0rk" path="res://assets/enemyRanged/hit/Armature_hit_12.png" id="14_up60h"]
+[ext_resource type="Texture2D" uid="uid://p5hjavog0rwk" path="res://assets/enemyRanged/run/Armature_newAnimation_12.png" id="15_rnv8l"]
+[ext_resource type="Texture2D" uid="uid://dgim5wd7xfpq1" path="res://assets/enemyRanged/run/Armature_newAnimation_13.png" id="16_xibxj"]
+[ext_resource type="Texture2D" uid="uid://cfido80s2lna3" path="res://assets/enemyRanged/run/Armature_newAnimation_14.png" id="17_v74nq"]
+[ext_resource type="Texture2D" uid="uid://x6vjb1l20xdo" path="res://assets/enemyRanged/run/Armature_newAnimation_15.png" id="18_kbby0"]
+[ext_resource type="Texture2D" uid="uid://cjs0lkigntcs" path="res://assets/enemyRanged/run/Armature_newAnimation_16.png" id="19_yngrw"]
+[ext_resource type="Texture2D" uid="uid://dnb0q78fj75jm" path="res://assets/enemyRanged/run/Armature_newAnimation_17.png" id="20_voyv7"]
+[ext_resource type="Texture2D" uid="uid://dlktwqn4brlpe" path="res://assets/enemyRanged/run/Armature_newAnimation_18.png" id="21_fgxyf"]
+[ext_resource type="Texture2D" uid="uid://cxgk7g673csm2" path="res://assets/enemyRanged/run/Armature_newAnimation_19.png" id="22_rg8ul"]
+[ext_resource type="Texture2D" uid="uid://c2hc3dkvj1w65" path="res://assets/enemyRanged/run/Armature_newAnimation_20.png" id="23_w4c4k"]
+[ext_resource type="Texture2D" uid="uid://dsc6phq32mfpw" path="res://assets/enemyRanged/run/Armature_newAnimation_21.png" id="24_xhgox"]
+[ext_resource type="Texture2D" uid="uid://dcnh1wc0y0xbr" path="res://assets/enemyRanged/run/Armature_newAnimation_22.png" id="25_i32m7"]
+[ext_resource type="Texture2D" uid="uid://bnmcpxbbx4mmx" path="res://assets/enemyRanged/run/Armature_newAnimation_23.png" id="26_050f2"]
+[ext_resource type="Texture2D" uid="uid://dxfhq85da6tyx" path="res://assets/enemyRanged/run/Armature_newAnimation_24.png" id="27_av36c"]
+[ext_resource type="Texture2D" uid="uid://2seu8jkct025" path="res://assets/enemyRanged/run/Armature_newAnimation_25.png" id="28_6aqcg"]
+[ext_resource type="Texture2D" uid="uid://cdfe2nh1gfo3q" path="res://assets/enemyRanged/run/Armature_newAnimation_26.png" id="29_x2myd"]
+[ext_resource type="Texture2D" uid="uid://cvtlvflxki61f" path="res://assets/enemyRanged/run/Armature_newAnimation_27.png" id="30_x40dv"]
+[ext_resource type="Texture2D" uid="uid://bhjh0s477ldtw" path="res://assets/enemyRanged/run/Armature_newAnimation_28.png" id="31_vsvx1"]
+[ext_resource type="Texture2D" uid="uid://stsar0tpuwjm" path="res://assets/enemyRanged/run/Armature_newAnimation_29.png" id="32_veukx"]
+[ext_resource type="Texture2D" uid="uid://c5xri8jvfhy5" path="res://assets/enemyRanged/run/Armature_newAnimation_30.png" id="33_q0iop"]
+[ext_resource type="Texture2D" uid="uid://cadgnh7u6wh5t" path="res://assets/enemyRanged/run/Armature_newAnimation_31.png" id="34_e8b0t"]
+[ext_resource type="Texture2D" uid="uid://kwsdp5t4kuut" path="res://assets/enemyRanged/run/Armature_newAnimation_32.png" id="35_4jbrl"]
+[ext_resource type="Texture2D" uid="uid://cg724lrabmsf3" path="res://assets/enemyRanged/run/Armature_newAnimation_33.png" id="36_vidd4"]
+[ext_resource type="Texture2D" uid="uid://b8m456aomu5d2" path="res://assets/enemyRanged/run/Armature_newAnimation_34.png" id="37_fflgr"]
+[ext_resource type="Texture2D" uid="uid://b7mgpw23l76ha" path="res://assets/enemyRanged/run/Armature_newAnimation_35.png" id="38_wo7xk"]
+[ext_resource type="Texture2D" uid="uid://bp5208xum7t52" path="res://assets/enemyRanged/run/Armature_newAnimation_36.png" id="39_lp316"]
+[ext_resource type="Texture2D" uid="uid://ddtsnogf4k4av" path="res://assets/enemyRanged/run/Armature_newAnimation_37.png" id="40_u1nv3"]
+[ext_resource type="Texture2D" uid="uid://dw7vcvo812p7n" path="res://assets/enemyRanged/run/Armature_newAnimation_38.png" id="41_fqgru"]
+[ext_resource type="Texture2D" uid="uid://cgjyex7cl5g24" path="res://assets/enemyRanged/run/Armature_newAnimation_39.png" id="42_bil24"]
+[ext_resource type="Texture2D" uid="uid://dtkwto25jj2qd" path="res://assets/enemyRanged/run/Armature_newAnimation_40.png" id="43_uh7rp"]
+[ext_resource type="Texture2D" uid="uid://bno6wr7v3vviw" path="res://assets/enemyRanged/run/Armature_newAnimation_41.png" id="44_ql1kh"]
+[ext_resource type="Texture2D" uid="uid://csebgtgwm5qro" path="res://assets/enemyRanged/run/Armature_newAnimation_42.png" id="45_wv6b7"]
+[ext_resource type="Texture2D" uid="uid://0db8l2flbbqe" path="res://assets/enemyRanged/run/Armature_newAnimation_43.png" id="46_onufg"]
+[ext_resource type="Texture2D" uid="uid://cfvbt5jx407ga" path="res://assets/enemyRanged/run/Armature_newAnimation_44.png" id="47_om7nh"]
+[ext_resource type="Texture2D" uid="uid://bxrrttr113jmg" path="res://assets/enemyRanged/run/Armature_newAnimation_45.png" id="48_kqi82"]
+[ext_resource type="Texture2D" uid="uid://cjlqb1nl1mmd8" path="res://assets/enemyRanged/run/Armature_newAnimation_46.png" id="49_hus7s"]
+[ext_resource type="Texture2D" uid="uid://bfouep7co38v4" path="res://assets/enemyRanged/run/Armature_newAnimation_47.png" id="50_63504"]
+[ext_resource type="Texture2D" uid="uid://criw258fnxew4" path="res://assets/enemyRanged/run/Armature_newAnimation_48.png" id="51_4eo4f"]
+[ext_resource type="Texture2D" uid="uid://12rippjsr7qs" path="res://assets/enemyRanged/run/Armature_newAnimation_49.png" id="52_53xh3"]
+[ext_resource type="Texture2D" uid="uid://b7um1mxg1f0bj" path="res://assets/enemyRanged/run/Armature_newAnimation_50.png" id="53_wuur3"]
+[ext_resource type="Texture2D" uid="uid://b3i17htpfw6gx" path="res://assets/light/images.jpg" id="68_xoj3u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tl0is"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_syag7")
+"texture": ExtResource("2_guuwi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e8d5y")
+"texture": ExtResource("3_xuorg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j23ji")
+"texture": ExtResource("4_h0sku")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aoc4u")
+"texture": ExtResource("5_uemke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cstbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cjldr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_clb7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_u72ol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_q7d0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_k5kns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jekg1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_woi7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_up60h")
 }],
 "loop": true,
-"name": &"idle",
-"speed": 5.0
+"name": &"hit",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a5moe")
+"texture": ExtResource("3_70r2e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kfx34")
+"texture": ExtResource("4_gkoe5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f1wyo")
+"texture": ExtResource("5_yk48k")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eif7i")
+"texture": ExtResource("6_3oaog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1w6lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_r1i6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_l8euk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_583ut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_v7jmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_kw57l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3jk8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hg52h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rnv8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xibxj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_v74nq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_kbby0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_yngrw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_voyv7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_fgxyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_rg8ul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_w4c4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_xhgox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_i32m7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_050f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_av36c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_6aqcg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_x2myd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_x40dv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_vsvx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_veukx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_q0iop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_e8b0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_4jbrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_vidd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_fflgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_wo7xk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_lp316")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_u1nv3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_fqgru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_bil24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_uh7rp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_ql1kh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_wv6b7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_onufg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_om7nh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_kqi82")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_hus7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_63504")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_4eo4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_53xh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_wuur3")
 }],
 "loop": true,
 "name": &"run",
-"speed": 2.0
+"speed": 15.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vucc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyaxx"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_yn7pn"]
 
 [node name="basePlayer" type="CharacterBody2D" groups=["Player"]]
-scale = Vector2(0.995515, 0.995515)
 collision_layer = 2
 script = ExtResource("1_48q1c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-self_modulate = Color(0.482353, 0.482353, 0.482353, 1)
+texture_filter = 1
+rotation = -7.11335e-05
 sprite_frames = SubResource("SpriteFrames_tl0is")
 animation = &"run"
+frame_progress = 0.983064
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
-scale = Vector2(1.76834, 3.05363)
-shape = SubResource("RectangleShape2D_3vucc")
+position = Vector2(5, -8)
+scale = Vector2(3.59665, 3.93517)
+shape = SubResource("CircleShape2D_yn7pn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_3assa")]
 action_name = "talk"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(-1, 3)
-scale = Vector2(1.65525, 3.17848)
-shape = SubResource("RectangleShape2D_yyaxx")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(5, -8)
+scale = Vector2(3.59665, 3.93517)
+shape = SubResource("CircleShape2D_yn7pn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -115,3 +314,12 @@ offset_top = 101.0
 offset_right = 1135.0
 offset_bottom = 124.0
 text = "da za : 0"
+
+[node name="flashlight" type="PointLight2D" parent="."]
+position = Vector2(317, 1)
+rotation = -1.57513
+scale = Vector2(1.32906, 2.49394)
+color = Color(0, 1, 0, 1)
+energy = 3.9
+texture = ExtResource("68_xoj3u")
+texture_scale = 0.9

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://010wh4tghgte"]
+
+[ext_resource type="Script" path="res://microphone_input_manager.gd" id="1_d8e5k"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_a00d7"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_d8e5k")
+
+[node name="microphone_input" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamMicrophone_a00d7")
+volume_db = 24.0
+autoplay = true
+bus = &"Voice"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
